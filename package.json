@@ -1,6 +1,6 @@
 {
   "name": "nahan-static",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Static-files middleware for nahan.",
   "main": "index.js",
   "scripts": {
@@ -12,5 +12,8 @@
     "coveralls": "^3.1.0",
     "mocha": "^8.0.1",
     "nyc": "^15.1.0"
+  },
+  "dependencies": {
+    "fs-extra": "^9.0.1"
   }
 }
