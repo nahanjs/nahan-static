@@ -5,6 +5,8 @@ const path = require('path');
 
 module.exports = Static;
 
+const extensions = ['', '.html'];
+
 function Static(root) {
     root = path.normalize(root);
 
@@ -21,11 +23,19 @@ function Static(root) {
             else
                 target = path.join(root, ctx.path);
 
-            if (! await fse.pathExists(target)) {
-                await next();
-            } else {
+            const found = false;
+            for (let ext of extensions) {
+                if (await fse.pathExists(target + ext)) {
+                    target += ext;
+                    found = true;
+                }
+            }
+
+            if (found) {
                 const data = await fse.readFile(target);
                 ctx.res.write(data);
+            } else {
+                await next();
             }
         }
     };
