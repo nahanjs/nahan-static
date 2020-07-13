@@ -1,6 +1,6 @@
 {
   "name": "nahan-static",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Static-files middleware for nahan.",
   "main": "index.js",
   "scripts": {

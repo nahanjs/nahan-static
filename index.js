@@ -23,7 +23,7 @@ function Static(root) {
             else
                 target = path.join(root, ctx.path);
 
-            const found = false;
+            let found = false;
             for (let ext of extensions) {
                 if (await fse.pathExists(target + ext)) {
                     target += ext;
