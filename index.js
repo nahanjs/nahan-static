@@ -15,7 +15,12 @@ function Static(root) {
         if (ctx.req.method !== 'GET') {
             await next();
         } else {
-            const target = path.join(root, ctx.path);
+            let target;
+            if (ctx.path === '/')
+                target = path.join(root, 'index.html');
+            else
+                target = path.join(root, ctx.path);
+
             if (! await fse.pathExists(target)) {
                 await next();
             } else {
