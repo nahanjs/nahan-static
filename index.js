@@ -6,6 +6,7 @@ const path = require('path');
 module.exports = Static;
 
 function Static(root) {
+    root = path.normalize(root);
 
     return async (ctx, next) => {
         if (ctx.path === undefined)
