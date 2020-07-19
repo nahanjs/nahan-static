@@ -28,12 +28,13 @@ function Static(root) {
                 if (await fse.pathExists(target + ext)) {
                     target += ext;
                     found = true;
+                    break;
                 }
             }
 
             if (found) {
                 const data = await fse.readFile(target);
-                ctx.res.write(data);
+                ctx.res.end(data);
             } else {
                 await next();
             }
