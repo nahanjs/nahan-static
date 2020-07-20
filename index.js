@@ -7,7 +7,7 @@ module.exports = Static;
 
 const extensions = ['', '.html'];
 
-function Static(root) {
+function Static(root, opts = {}) {
     root = path.normalize(root);
 
     return async (ctx, next) => {
@@ -34,6 +34,8 @@ function Static(root) {
 
             if (found) {
                 const data = await fse.readFile(target);
+                if (opts.maxage)
+                    ctx.res.setHeader('Cache-Control', `max-age=${opts.maxage}`);
                 ctx.res.end(data);
             } else {
                 await next();
